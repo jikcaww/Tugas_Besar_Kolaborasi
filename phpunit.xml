@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php" colors="true">
+    <testsuites>
+        <testsuite name="Project Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="RAPID_API_KEY" value="57962632a0msh6ec3f17ea71332dp1a32d5jsn5d1ceb1c4311"/>
+    </php>
+</phpunit>

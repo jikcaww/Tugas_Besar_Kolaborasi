@@ -1,0 +1,40 @@
+name: Game Username Checker CI/CD
+
+# a. Trigger saat push dan PR ke branch main
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout kode dari repository
+    - uses: actions/checkout@v3
+
+    # 2. Setup PHP
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+        extensions: mbstring, intl
+        coverage: xdebug
+
+    # 3. Validasi composer.json
+    - name: Validate composer.json
+      run: composer validate --strict
+
+    # 4. Install Dependencies (PHPUnit & Guzzle)
+    - name: Install Dependencies
+      run: composer install --prefer-dist --no-progress
+
+    # 5. Jalankan Testing
+    # b. Gunakan library testing (PHPUnit)
+    # Gunakan Github Secret untuk menyimpan API Key
+    - name: Run Test Suite
+      env:
+        RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
+      run: vendor/bin/phpunit tests/FileTypeTest.php

@@ -2,14 +2,12 @@
     "name": "gametopup/app",
     "description": "Game Top Up Application",
     "type": "project",
+    "license": "MIT",
     "require": {
         "php": ">=7.4",
         "ext-curl": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
-    },
-    "autoload": {
-        "files": ["config.php", "functions.php"]
     }
 }
